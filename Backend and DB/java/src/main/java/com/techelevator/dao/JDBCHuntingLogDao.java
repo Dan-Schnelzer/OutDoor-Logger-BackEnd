@@ -64,6 +64,14 @@ public class JDBCHuntingLogDao implements HuntingLogDao{
         return huntingLogList;
     }   //5H. this method lets you view all logs if you want by gathering all by userId
 
+    @Override
+    public HuntingLog updateHuntingLog(HuntingLog huntingLog) {
+        String sql = " UPDATE hunting_log SET user_id = ?, log_date = ?, log_location = ?, log_description = ?, images = ?, weather = ?, hunting_type = ?, hunting_trip = ?, WHERE hunt_log_id = ? " ;
+        jdbcTemplate.update(sql, huntingLog.getUserId(), huntingLog.getLogDate(), huntingLog.getLogLocation(), huntingLog.getLogDescription(),
+                huntingLog.getImageURL(), huntingLog.getWeather(), huntingLog.getHuntingType(), huntingLog.getHuntingTrip(), huntingLog.getHuntLogId());
+        return huntingLog;
+    }   //6H. This lets you update a Hunting Log
+
     private HuntingLog mapResultsToHutingLog(SqlRowSet results){
         HuntingLog huntingLog = new HuntingLog();
         huntingLog.setHuntLogId(results.getLong("hunt_log_id"));

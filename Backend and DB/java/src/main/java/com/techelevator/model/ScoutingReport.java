@@ -8,6 +8,7 @@ public class ScoutingReport {
     private String reportTime;
     private String weather;
     private String scoutDescription;
+    private String imageURL;
 
     public long getScoutReportID() {
         return scoutReportID;
@@ -63,6 +64,14 @@ public class ScoutingReport {
 
     public void setScoutDescription(String scoutDescription) {
         this.scoutDescription = scoutDescription;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     @Override

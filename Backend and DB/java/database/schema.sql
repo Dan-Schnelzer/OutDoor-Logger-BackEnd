@@ -12,7 +12,7 @@ CREATE TABLE users (
         last_name   varchar(50)  NULL,
         username  varchar(50) UNIQUE,
         password_hash varchar(250) NOT NULL,
-        email varchar (50) UNIQUE NULL,
+        email varchar (50) UNIQUE NOT NULL,
         role  varchar (50) NOT NULL,
         CONSTRAINT pk_users PRIMARY KEY (user_id)
         );
@@ -24,6 +24,7 @@ CREATE TABLE scouting_report (
         user_id   int NOT NULL,
         report_date DATE NULL,
         report_location  varchar(200)  NULL,
+        images varchar(1000) NULL,
         report_time    varchar(50) NULL,
         weather  varchar(100) NULL,
         scout_description  varchar(2000) NOT NULL,

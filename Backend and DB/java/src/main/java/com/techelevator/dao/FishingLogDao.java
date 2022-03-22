@@ -16,6 +16,8 @@ public interface FishingLogDao {
 
     List<FishingLog> getFishingLogsByUser(long userId);     //5F
 
+    FishingLog updateFishingLog(FishingLog fishingLog);     //6F
+
 
 
 }

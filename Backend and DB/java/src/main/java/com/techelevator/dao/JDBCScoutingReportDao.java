@@ -19,10 +19,10 @@ public class JDBCScoutingReportDao implements ScoutingReportDao{
 
     @Override
     public ScoutingReport createScoutingReport(ScoutingReport scoutingReport) {
-        String sql = "INSERT INTO scouting_report (user_id, report_date, report_location, report_time, weather, scout_description) " +
+        String sql = "INSERT INTO scouting_report (user_id, report_date, report_location, report_time, weather, scout_description, images) " +
                 " VALUES (?,?,?,?,?,?)";
         jdbcTemplate.update(sql, scoutingReport.getUserID(), scoutingReport.getReportDate(), scoutingReport.getReportLocation(),
-                scoutingReport.getReportTime(), scoutingReport.getWeather(), scoutingReport.getScoutDescription());
+                scoutingReport.getReportTime(), scoutingReport.getWeather(), scoutingReport.getScoutDescription(), scoutingReport.getImageURL());
         return scoutingReport;
     }   //1S this method creates a new Scout Report
 
@@ -66,6 +66,14 @@ public class JDBCScoutingReportDao implements ScoutingReportDao{
         return scoutingReports;
     }   //5S. this method lets you view all reports if you want by gathering all by userId
 
+    @Override
+    public ScoutingReport updateScoutReport(ScoutingReport scoutingReport) {
+        String sql = " UPDATE scouting_report SET user_id = ?, report_date =?, report_location = ?, report_time = ?, weather = ?, scout_description = ?, images = ? WHERE scout_report_id = ? " ;
+        jdbcTemplate.update(sql, scoutingReport.getUserID(), scoutingReport.getReportDate(), scoutingReport.getReportLocation(),
+                scoutingReport.getReportTime(), scoutingReport.getWeather(), scoutingReport.getScoutDescription(), scoutingReport.getImageURL(), scoutingReport.getScoutReportID());
+        return scoutingReport;
+    }   // 6S. this lets you update a Scouting Report
+
     private ScoutingReport mapResultsToScoutReport(SqlRowSet results){
         ScoutingReport scoutingReport = new ScoutingReport();
         scoutingReport.setScoutReportID(results.getLong("scout_report_id"));
@@ -75,6 +83,7 @@ public class JDBCScoutingReportDao implements ScoutingReportDao{
         scoutingReport.setReportTime(results.getString("report_time"));
         scoutingReport.setWeather(results.getString("weather"));
         scoutingReport.setScoutDescription(results.getString("scout_description"));
+        scoutingReport.setImageURL(results.getString("images"));
         return scoutingReport;
     }     // this is just a helper method  **********
 }

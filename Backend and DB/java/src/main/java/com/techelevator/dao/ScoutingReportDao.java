@@ -15,4 +15,6 @@ public interface ScoutingReportDao {
     void deleteScoutReport(long logId);                //4S
 
     List<ScoutingReport> getScoutingReportByUser(long userId);            //5S
+
+    ScoutingReport updateScoutReport(ScoutingReport scoutingReport);    // 6S
 }

@@ -18,7 +18,7 @@ public class JDBCFishingLogDao implements FishingLogDao {
 
     @Override
     public FishingLog createFishingLog(FishingLog fishingLog) {
-        String sql = "INSERT INTO fishing_log (user_id, log_date, log_location, log_description, images, bait, weahter,fishing_trip) " +
+        String sql = "INSERT INTO fishing_log (user_id, log_date, log_location, log_description, images, bait, weather,fishing_trip) " +
                 " VALUES (?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql, fishingLog.getUserId(), fishingLog.getLogDate(), fishingLog.getLogLocation(), fishingLog.getLogDescription(),
                 fishingLog.getImageURL(), fishingLog.getBait(), fishingLog.getWeather(), fishingLog.getFishingTrip());
@@ -34,7 +34,7 @@ public class JDBCFishingLogDao implements FishingLogDao {
             fishLogIds.add(results.getLong("fish_log_id"));
         }
         return fishLogIds;
-    }      // 2F.this method will bring a list of your fishing log IDs for you to choose from
+    }      // 2F.this method will bring a list of your fishing log IDs for you to choose from(may need to change this so it includes location and date)
 
     @Override
     public FishingLog getFishingLogById(long logId) {
@@ -64,6 +64,14 @@ public class JDBCFishingLogDao implements FishingLogDao {
         return fishingLogList;
     }     // 5F.this method lets you view all logs if you want by gathering all by userId
 
+    @Override
+    public FishingLog updateFishingLog(FishingLog fishingLog) {
+        String sql = "UPDATE fishing_log SET user_id = ?, log_date = ?, log_location =?, log_description = ?, images = ?, bait = ?, weather = ?,fishing_trip = ? WHERE fish_log_id = ? ";
+        jdbcTemplate.update(sql, fishingLog.getUserId(), fishingLog.getLogDate(), fishingLog.getLogLocation(), fishingLog.getLogDescription(),
+                fishingLog.getImageURL(), fishingLog.getBait(), fishingLog.getWeather(), fishingLog.getFishingTrip(), fishingLog.getFishLogId());
+        return fishingLog;
+            // 6F. This lets you update an existing log
+    }
 
 
     private FishingLog mapResultsToFishingLog(SqlRowSet results){

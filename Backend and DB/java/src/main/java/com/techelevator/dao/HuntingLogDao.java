@@ -15,4 +15,6 @@ public interface HuntingLogDao {
     void deleteHuntingLog(long logId);             //4H
 
     List<HuntingLog> getHuntingLogsByUser(long userId);        // 5H
+
+    HuntingLog updateHuntingLog(HuntingLog huntingLog);       //6H
 }
