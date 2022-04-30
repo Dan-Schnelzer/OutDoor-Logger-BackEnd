@@ -1,9 +1,11 @@
 package com.techelevator.model;
 
+import java.util.Date;
+
 public class ScoutingReport {
     private long scoutReportID;
     private long userID;
-    private String reportDate;       // this can change if I want to do localTimeDate stuff, right now ppl can enter months and day ranges and it be fine
+    private Date reportDate;       // this can change if I want to do localTimeDate stuff, right now ppl can enter months and day ranges and it be fine
     private String reportLocation;
     private String reportTime;
     private String weather;
@@ -26,11 +28,11 @@ public class ScoutingReport {
         this.userID = userID;
     }
 
-    public String getReportDate() {
+    public Date getReportDate() {
         return reportDate;
     }
 
-    public void setReportDate(String reportDate) {
+    public void setReportDate(Date reportDate) {
         this.reportDate = reportDate;
     }
 

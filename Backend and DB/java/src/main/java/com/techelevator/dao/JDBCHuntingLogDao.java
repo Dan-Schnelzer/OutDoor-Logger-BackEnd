@@ -56,7 +56,7 @@ public class JDBCHuntingLogDao implements HuntingLogDao{
     @Override
     public List<HuntingLog> getHuntingLogsByUser(long userId) {
         List<HuntingLog> huntingLogList = new ArrayList<>();
-        String sql = "SELECT * FROM hunting_log WHERE user_id = ?";
+        String sql = "SELECT * FROM hunting_log WHERE user_id = ? ORDER BY hunt_log_id DESC";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
         while (results.next()){
             huntingLogList.add(mapResultsToHutingLog(results));
@@ -76,7 +76,7 @@ public class JDBCHuntingLogDao implements HuntingLogDao{
         HuntingLog huntingLog = new HuntingLog();
         huntingLog.setHuntLogId(results.getLong("hunt_log_id"));
         huntingLog.setUserId(results.getLong("user_id"));
-        huntingLog.setLogDate(results.getString("log_date"));
+        huntingLog.setLogDate(results.getDate("log_date"));
         huntingLog.setLogLocation(results.getString("log_location"));
         huntingLog.setLogDescription(results.getString("log_description"));
         huntingLog.setImageURL(results.getString("images"));

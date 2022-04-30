@@ -35,7 +35,7 @@ public class HikingController {
     }   //3HK. this method will bring your hiking log info once the log id is selected
 
 //    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @RequestMapping(path = "/hikinglong/{id}" , method = RequestMethod.DELETE)
+    @RequestMapping(path = "/hikinglog/{id}" , method = RequestMethod.DELETE)
     public void deleteHikingLog(@PathVariable("id") long logId){
         hikingLogDao.deleteHikingLog(logId);
     }  //4HK. this will delete a hiking log

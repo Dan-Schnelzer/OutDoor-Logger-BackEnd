@@ -17,8 +17,8 @@ public class JDBCHikingLogDao implements HikingLogDao {
     }
     @Override
     public HikingLog createHikingLog(HikingLog hikingLog) {
-        String sql = "INSERT INTO hiking_log (user_id, log_date, log_location, log_description, images, weather, log_state " +
-                " VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO hiking_log (user_id, log_date, log_location, log_description, images, weather, log_state) " +
+                "  VALUES (?,?,?,?,?,?,?) ";
         jdbcTemplate.update(sql, hikingLog.getUserId(), hikingLog.getLogDate(), hikingLog.getLogLocation(), hikingLog.getLogDescription(),
                 hikingLog.getImageURL(), hikingLog.getWeather(), hikingLog.getLogState());
         return hikingLog;
@@ -55,7 +55,7 @@ public class JDBCHikingLogDao implements HikingLogDao {
     @Override
     public List<HikingLog> getHikingLogsByUser(long userId) {
         List<HikingLog> hikingList = new ArrayList<>();
-        String sql = " SELECT * FROM hiking_log WHERE user_id = ? ";
+        String sql = " SELECT * FROM hiking_log WHERE user_id = ? ORDER BY hiking_log_id DESC";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
         while (results.next()){
             hikingList.add(mapResultsToHikingLog(results));
@@ -76,7 +76,7 @@ public class JDBCHikingLogDao implements HikingLogDao {
         HikingLog hikingLog = new HikingLog();
         hikingLog.setHikingLogId(results.getLong("hiking_log_id"));
         hikingLog.setUserId(results.getLong("user_id"));
-        hikingLog.setLogDate(results.getString("log_date"));
+        hikingLog.setLogDate(results.getDate("log_date"));
         hikingLog.setLogDescription(results.getString("log_description"));
         hikingLog.setImageURL(results.getString("images"));
         hikingLog.setLogLocation(results.getString("log_location"));

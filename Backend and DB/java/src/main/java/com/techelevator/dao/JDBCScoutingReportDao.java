@@ -20,7 +20,7 @@ public class JDBCScoutingReportDao implements ScoutingReportDao{
     @Override
     public ScoutingReport createScoutingReport(ScoutingReport scoutingReport) {
         String sql = "INSERT INTO scouting_report (user_id, report_date, report_location, report_time, weather, scout_description, images) " +
-                " VALUES (?,?,?,?,?,?)";
+                " VALUES (?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql, scoutingReport.getUserID(), scoutingReport.getReportDate(), scoutingReport.getReportLocation(),
                 scoutingReport.getReportTime(), scoutingReport.getWeather(), scoutingReport.getScoutDescription(), scoutingReport.getImageURL());
         return scoutingReport;
@@ -58,7 +58,7 @@ public class JDBCScoutingReportDao implements ScoutingReportDao{
     @Override
     public List<ScoutingReport> getScoutingReportByUser(long userId) {
         List<ScoutingReport> scoutingReports = new ArrayList<>();
-        String sql = "SELECT * FROM scouting_report WHERE user_id = ?";
+        String sql = "SELECT * FROM scouting_report WHERE user_id = ? ORDER BY scout_report_id DESC ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
         while (results.next()){
             scoutingReports.add(mapResultsToScoutReport(results));
@@ -78,7 +78,7 @@ public class JDBCScoutingReportDao implements ScoutingReportDao{
         ScoutingReport scoutingReport = new ScoutingReport();
         scoutingReport.setScoutReportID(results.getLong("scout_report_id"));
         scoutingReport.setUserID(results.getLong("user_id"));
-        scoutingReport.setReportDate(results.getString("report_date"));
+        scoutingReport.setReportDate(results.getDate("report_date"));
         scoutingReport.setReportLocation(results.getString("report_location"));
         scoutingReport.setReportTime(results.getString("report_time"));
         scoutingReport.setWeather(results.getString("weather"));

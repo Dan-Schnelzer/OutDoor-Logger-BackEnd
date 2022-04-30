@@ -56,7 +56,7 @@ public class JDBCFishingLogDao implements FishingLogDao {
     @Override
     public List<FishingLog> getFishingLogsByUser(long userId) {
         List<FishingLog> fishingLogList = new ArrayList<>();
-        String sql = "Select * from fishing_log WHERE user_id = ?";
+        String sql = "Select * from fishing_log WHERE user_id = ? ORDER BY fish_log_id DESC ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId );
         while (results.next()){
             fishingLogList.add(mapResultsToFishingLog(results));
@@ -78,7 +78,7 @@ public class JDBCFishingLogDao implements FishingLogDao {
         FishingLog fishingLog = new FishingLog();
         fishingLog.setFishLogId(results.getLong("fish_log_id"));
         fishingLog.setUserId(results.getLong("user_id"));
-        fishingLog.setLogDate(results.getString("log_date"));
+        fishingLog.setLogDate(results.getDate("log_date"));
         fishingLog.setLogLocation(results.getString("log_location"));
         fishingLog.setLogDescription(results.getString("log_description"));
         fishingLog.setImageURL(results.getString("images"));

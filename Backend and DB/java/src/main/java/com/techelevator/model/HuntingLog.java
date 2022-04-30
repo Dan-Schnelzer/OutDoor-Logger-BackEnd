@@ -1,9 +1,11 @@
 package com.techelevator.model;
 
+import java.util.Date;
+
 public class HuntingLog {
     private long huntLogId;
     private long userId;
-    private String logDate;      // this can change if I want to do localTimeDate stuff, right now ppl can enter months and day ranges and it be fine
+    private Date logDate;      // this can change if I want to do localTimeDate stuff, right now ppl can enter months and day ranges and it be fine
     private String logLocation;
     private String logDescription;
     private String imageURL;
@@ -27,11 +29,11 @@ public class HuntingLog {
         this.userId = userId;
     }
 
-    public String getLogDate() {
+    public Date getLogDate() {
         return logDate;
     }
 
-    public void setLogDate(String logDate) {
+    public void setLogDate(Date logDate) {
         this.logDate = logDate;
     }
 

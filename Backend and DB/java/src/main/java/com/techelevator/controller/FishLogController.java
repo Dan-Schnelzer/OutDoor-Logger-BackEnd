@@ -35,7 +35,7 @@ public class FishLogController {
 //    @ResponseStatus(HttpStatus.NOT_FOUND)
     @RequestMapping(path = "/fishinglog/{id}", method = RequestMethod.GET)
     public FishingLog viewMyFishLog(@PathVariable("id") long logId){
-        System.out.println("seeing if called upon");
+        System.out.println("seeing if called upon" + logId);
         return fishingLogDao.getFishingLogById(logId);
     }    //3F.this method will bring your fishing log info once you pick a fishing log ID
 

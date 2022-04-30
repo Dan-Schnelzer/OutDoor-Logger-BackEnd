@@ -1,9 +1,11 @@
 package com.techelevator.model;
 
+import java.util.Date;
+
 public class HikingLog {
     private long hikingLogId;
     private long userId;
-    private String logDate;
+    private Date logDate;
     private String logLocation;
     private String logDescription;
     private String imageURL;
@@ -27,11 +29,11 @@ public class HikingLog {
         this.userId = userId;
     }
 
-    public String getLogDate() {
+    public Date getLogDate() {
         return logDate;
     }
 
-    public void setLogDate(String logDate) {
+    public void setLogDate(Date logDate) {
         this.logDate = logDate;
     }
 
