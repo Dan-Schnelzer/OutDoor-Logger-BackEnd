@@ -51,7 +51,7 @@ public class ScoutReportController {
     }   //5S. this method will bring you all of your scout reports to view by your userID
 
 //    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @RequestMapping(path = "/scoutingreport/update/{id}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/scoutingreport/update/{scoutReportID}", method = RequestMethod.PUT)
     public ScoutingReport updateScoutReport(@PathVariable long scoutReportID, @RequestBody ScoutingReport scoutingReport){
         return scoutingReportDao.updateScoutReport(scoutingReport);
     }   //6S. this method will update and existing Scout Report

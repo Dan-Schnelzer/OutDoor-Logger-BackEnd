@@ -12,6 +12,16 @@ public class RegisterUserDTO {
     private String confirmPassword;
     @NotEmpty(message = "Please select a role for this user.")
     private String role;
+    @NotEmpty
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getUsername() {
         return username;

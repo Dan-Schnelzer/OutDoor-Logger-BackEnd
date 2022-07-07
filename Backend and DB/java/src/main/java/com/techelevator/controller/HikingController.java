@@ -47,7 +47,7 @@ public class HikingController {
     }   //5HK. this method will bring all of your hiking logs by userId
 
 //    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @RequestMapping(path = "/hikinglog/update/{id}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/hikinglog/update/{hikingLogId}", method = RequestMethod.PUT)
     public HikingLog updateHikingLog(@PathVariable long hikingLogId, @RequestBody HikingLog hikingLog){
         return hikingLogDao.updateHikingLog(hikingLog);
     }   //6HK. this method will update and existing hiking log

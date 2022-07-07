@@ -49,7 +49,7 @@ public class HuntLogController {
     }   //5H. this method will bring you all of your hunting logs to view by your userID
 
 //    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @RequestMapping(path = "/huntinglog/update/{id}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/huntinglog/update/{huntLogId}", method = RequestMethod.PUT)
     public HuntingLog updateHuntingLog(@PathVariable long huntLogId, @RequestBody HuntingLog huntingLog){
         return huntingLogDao.updateHuntingLog(huntingLog);
     }   //6H. this will update an existing hunting Log

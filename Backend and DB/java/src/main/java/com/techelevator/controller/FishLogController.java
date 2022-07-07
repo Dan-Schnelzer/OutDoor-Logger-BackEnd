@@ -35,7 +35,6 @@ public class FishLogController {
 //    @ResponseStatus(HttpStatus.NOT_FOUND)
     @RequestMapping(path = "/fishinglog/{id}", method = RequestMethod.GET)
     public FishingLog viewMyFishLog(@PathVariable("id") long logId){
-        System.out.println("seeing if called upon" + logId);
         return fishingLogDao.getFishingLogById(logId);
     }    //3F.this method will bring your fishing log info once you pick a fishing log ID
 
@@ -52,7 +51,7 @@ public class FishLogController {
     }   //5F. this method will bring you all of your fishing logs to view by your userID
 
 //    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @RequestMapping(path = "/fishinglog/update/{id}", method = RequestMethod.PUT)
+    @RequestMapping(path = "/fishinglog/update/{fishLogId}", method = RequestMethod.PUT)
     public FishingLog updateFishingLog(@PathVariable long fishLogId, @RequestBody FishingLog fishingLog){
         return fishingLogDao.updateFishingLog(fishingLog);
     }   //6F. this will update an existing fishing Log

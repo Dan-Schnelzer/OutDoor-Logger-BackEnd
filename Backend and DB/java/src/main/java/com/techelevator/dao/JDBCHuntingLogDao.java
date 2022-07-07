@@ -66,7 +66,7 @@ public class JDBCHuntingLogDao implements HuntingLogDao{
 
     @Override
     public HuntingLog updateHuntingLog(HuntingLog huntingLog) {
-        String sql = " UPDATE hunting_log SET user_id = ?, log_date = ?, log_location = ?, log_description = ?, images = ?, weather = ?, hunting_type = ?, hunting_trip = ?, WHERE hunt_log_id = ? " ;
+        String sql = " UPDATE hunting_log SET user_id = ?, log_date = ?, log_location = ?, log_description = ?, images = ?, weather = ?, hunting_type = ?, hunting_trip = ? WHERE hunt_log_id = ? " ;
         jdbcTemplate.update(sql, huntingLog.getUserId(), huntingLog.getLogDate(), huntingLog.getLogLocation(), huntingLog.getLogDescription(),
                 huntingLog.getImageURL(), huntingLog.getWeather(), huntingLog.getHuntingType(), huntingLog.getHuntingTrip(), huntingLog.getHuntLogId());
         return huntingLog;
